@@ -1,0 +1,142 @@
+
+#mapfindspots #google_loc {
+    margin-top: 10px;
+    clear: left;
+    max-width: 400px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+#mapfindspots.small-size #google_loc {
+    max-width: 50%;
+}
+
+#mapfindspots.en p.desc {
+    text-align: center;
+    width: 100%;
+}
+
+#mapfindspots #training_center_list {
+    float: left;
+    height: 580px;
+    width: 400px;
+    border: solid 0.5px #DDD;
+    border-radius: 4px 0px 0px 4px;
+    display: inline-block;
+    overflow: auto;
+}
+
+#mapfindspots #training_center_list p {
+    padding: 2px 15px;
+}
+
+#mapfindspots .trainingcenter_title {
+    border-bottom: 1px solid #e0ecff;
+    overflow: hidden;
+    width: auto;
+    cursor: pointer;
+    padding: 10px 15px;
+    display: block;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#mapfindspots .trainingcenter_title:hover {
+    filter: brightness(85%);
+    background-color: #ddd;
+}
+
+#mapfindspots .container p,
+#mapfindspots .container div {
+    margin-bottom: initial;
+}
+
+#mapfindspots #map {
+    width: 756px;
+    height: 580px;
+    display: inline-block;
+}
+
+/*********************************************************/
+/*      ui-dialog                 			*/
+/*******************************************************/
+.ui-dialog .content_area {
+    width: 100%;
+    padding: 20px 0px;
+    overflow: auto;
+}
+
+.ui-dialog {
+    overflow: visible;
+    background: #FFF;
+    font-family: 'Raleway', sans-serif;
+    color: #444;
+}
+
+.ui-dialog .ui-widget-header {
+    border: none;
+    background: none;
+    width: 100%;
+    padding-left: 0px !important;
+    text-align: center;
+}
+
+.ui-dialog .ui-widget-header .ui-dialog-title {
+    color: #d9696c;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 20px 20px 0;
+    padding: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.ui-dialog-titlebar button {
+    display: none;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    padding: 0px 25px 0px 25px;
+    clear: left;
+    overflow: visible;
+    width: 100% !important;
+}
+
+.ui-dialog .box-close {
+    position: absolute;
+    top: -92px;
+    right: 3px;
+}
+
+.ui-dialog .box-close .under-box-close:focus,
+.ui-dialog .box-close .under-box-close:active {
+    outline: none;
+}
+
+.ui-dialog .box-close .under-box-close .close {
+    color: #e1656d;
+    font-size: 40px;
+    opacity: 1;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.ui-dialog .ui-dialog-titlebar-close:hover {
+    background: none;
+    border: none;
+    padding: 1px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+    background: none;
+    text-indent: 2px;
+    margin-top: -8px;
+    width: 11px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span:before {
+    content: 'X';
+}

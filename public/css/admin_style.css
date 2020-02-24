@@ -1,0 +1,45 @@
+.columns {
+    display: flex;
+}
+
+.columns .column {
+    width: 50%;
+    padding: 0 16px;
+}
+
+
+#spot .title {
+    margin: 8px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#spot .field-group {
+    padding: 8px 0;
+}
+
+#spot .field-group input[type=date],
+#spot .field-group input[type=datetime-local],
+#spot .field-group input[type=datetime],
+#spot .field-group input[type=email],
+#spot .field-group input[type=month],
+#spot .field-group input[type=number],
+#spot .field-group input[type=password],
+#spot .field-group input[type=search],
+#spot .field-group input[type=tel],
+#spot .field-group input[type=text],
+#spot .field-group input[type=time],
+#spot .field-group input[type=url],
+#spot .field-group input[type=week] {
+    width: 300px;
+    border-radius: 2px;
+    margin: 8px 0;
+    height: 34px;
+    line-height: 34px;
+}
+
+#spot .field-group textarea {
+    width: 300px;
+    border-radius: 2px;
+    margin: 8px 0;
+}
