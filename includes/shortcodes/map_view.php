@@ -4,92 +4,103 @@ function map_view($atts)
 
     ob_start();?>
 
-<article id="mapfindspots" class="fr">
+<article id="mapfindspots" class="fr mapfindspots">
     <div class="container ">
-        <div class="frenchmap desc">
-            Entrez une ville, un département ou un code postal dans le champ ci-dessous, ou
-            sélectionnez un département directement sur la carte
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Entrez une ville, un département ou un code postal dans le champ ci-dessous, ou sélectionnez un
+                    département
+                    directement sur la carte
+                </p>
+
+                <p id="map_error_msg" class="d-none"></p>
+
+                <input name="google_loc" placeholder="Indiquez un lieu" type="text" id="google_loc" class="google_loc"
+                    data-required="1" />
+
+            </div>
         </div>
 
-        <div id="map_error_msg"></div>
 
-        <input name="google_loc" placeholder="Indiquez un lieu" type="text" class=" form-control" id="google_loc"
-            data-required="1" />
-        <div style="float:none;margin:0 auto;" id="map" data-trainingcenters=""></div>
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <div id="training_center_list">
+                    <div class="center_number">centres trouvés.</div>
+                    <div class="oversized_results">Veuillez zoomer pour afficher la liste.</div>
+                    <div id="dialog_training_center_detail">
+                        <div class="box-close">
+                            <div class="under-box-close">
+                                <a class="dialog_training_close" data-dismiss="modal">
+                                    <span id="" aria-hidden="true">&times;</span>
+                                </a>
+                            </div>
+                        </div>
 
-        <div id="training_center_list">
-            <p class="center_number">centres trouvés.</p>
-            <p class="oversized_results">Veuillez zoomer pour afficher la liste.</p>
-        </div>
+                        <div class="content_area">
+                            <div class="messageadmin" id="dialog_training_center_detail_error"></div>
+                            <div class="trainingcentersdetails">
 
-        <div id="dialog_training_center_detail" title="" class="mydialog">
-            <div class="box-close">
-                <div class="under-box-close">
-                    <a class="close" data-dismiss="modal"
-                        onclick="$('#dialog_training_center_detail').dialog('close');">
-                        <span id="" aria-hidden="true">&times;</span>
-                    </a>
+                                <div class="d-flex justify-content-between">
+                                    <div class="referent">
+                                        <h4 class="ref ">Référent:</h4>
+                                        <div><span class="info-label">Nom: </span><span class="nom_ref"></span> </div>
+                                        <div><span class="info-label">Téléphone:</span> <span class="tel_ref"></span>
+                                        </div>
+                                        <div><span class="info-label">Adresse e-mail: </span><span
+                                                class="email_ref"></span> </div>
+                                    </div>
+                                    <a class="logo_url" target="_blank"> <img src="#" class="logo" alt=""> </a>
+                                </div>
+
+                                <div class="center">
+                                    <h4 class="address">Center: </h4>
+                                    <div> <span class="info-label"> Nom: </span><span class="nom_center"></span></div>
+                                    <div>
+                                        <span class="info-label"> Adresse : </span>
+                                        <span class="street"></span>
+                                        <span class="zispan"></span>
+                                        <span class="cit"></span>
+                                    </div>
+                                    <div><span class="info-label">Téléphone:</span> <span class="tel_center"></span>
+                                    </div>
+                                    <div><span class="info-label">Adresse e-mail: </span><span
+                                            class="email_center"></span> </div>
+                                    <div class="website_center"><span class="info-label">Site Web: </span><a href="#"
+                                            target="_blank">Website</a></div>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <div class="contact_center">
+                                        <a href="#" class="btn btn-custom">Contacer le centre </a>
+                                    </div>
+
+                                    <div class="see_map_g btn btn-custom">Zoomer sur la carte</div>
+                                </div>
+
+                                <p class="text"></p>
+
+                                <div class="info-slider"></div>
+                                
+                            </div>
+                            <input type="hidden" name="postback_message" value="" />
+                            <div class="image-slide-container"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="content_area">
-                <p class="messageadmin" id="dialog_training_center_detail_error"></p>
-                <div class="trainingcentersdetails">
-
-                    <div class="col-md-11">
-
-                        <div class="con">
-                            <p class="ref"><strong>Référent: </strong></p>
-                            <p class="nom_ref"></p>
-                            <p class="tel_ref"></p>
-                            <p class="email_ref"></p>
-                        </div>
-
-                        <div class="adr">
-                            <p class="address"><strong>Adresse: </strong></p>
-                            <p>
-                                <span class="street"></span>
-                                <span class="zispan"></span>
-                                <span class="cit"></span>
-                            </p>
-                            <span class="see_map_g">zoomer sur la carte</span>
-                        </div>
-
-                        <div class="center">
-                            <p class="address"> <strong>center: </strong> </p>
-                            <p class="nom_center"></p>
-                            <p class="tel_center"></p>
-                            <div class="website_center"><a href="#" target="_blank">Website</a></div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-3"><a class="logo_url" target="_blank"> <img src="#" class="logo" alt=""> </a>
-                    </div>
-
-                    <div class="col-md-12"><a href="#">Contacer le centre </a>
-                    </div>
-
-                </div>
-                <input type="hidden" name="postback_message" value="" />
-            </div>
-            <div class="button_area">
-
-                <p class="text"></p>
-
-            </div>
-            <div class="image-slide-container">
+            <div class="col-md-9">
+                <div id="map" data-trainingcenters=""></div>
             </div>
         </div>
-
-
 
         <input type="hidden" name="map_place" value="" id="map_place" />
         <input type="hidden" name="zoom" value="zoomer sur la carte" id="zoom" />
+
     </div>
 </article>
 
-
+<div class="shadow"></div>
 
 <?php
 $map = ob_get_clean();

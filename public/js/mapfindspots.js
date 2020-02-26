@@ -2,7 +2,7 @@
 var autocomplete_adr;
 var map;
 var map_place;
-var spot_json; 
+var spot_json;
 var trainingcenters;
 var trainingcenters_list = document.getElementById('training_center_list');
 var centerNumber = $('#training_center_list .center_number').html();
@@ -21,7 +21,7 @@ $(document).ready(function () {
         'success': function (data) {
             trainingcenters = data;
         }
-    }); 
+    });
 
     CreateMultiSelect();
     SetMap();
@@ -43,13 +43,14 @@ $(document).ready(function () {
 
     }
     // we need to open and close the dialog in ready because we have dynamic ui-title for each training center
-    OpenDialog('dialog_training_center_detail', { width: 650 });
+    OpenDialog('dialog_training_center_detail', { width: 750 });
     $('#dialog_training_center_detail').dialog('close');
+    $('.ui-widget-overlay').hide();
 });
 
 function SetCityAutocompletion() {
     var markers = [];
-    if(map)
+    if (map)
         map.addListener('bounds_changed', function () {
             searchBox.setBounds(map.getBounds());
         });
@@ -151,13 +152,13 @@ function SetMap() {
     var result;
     // Set Training Centers Markers ON MAP
     $.each(trainingcenters, function (index, value) {
-       
+
         var mykey = '';
-        for(key in value.spot_json){
+        for (key in value.spot_json) {
             mykey = key;
             break;
-        } 
-        spot_json = value.spot_json[mykey]; 
+        }
+        spot_json = value.spot_json[mykey];
         if (spot_json.position.lat != 0 && spot_json.position.lon != 0) {
             var loc = new google.maps.LatLng(spot_json.position.lat, spot_json.position.lon);
 
@@ -190,7 +191,7 @@ function SetMap() {
             title.addEventListener('mouseout', function () {
                 infowindow.close(map, marker);
             });
-            title.addEventListener('click', function () { 
+            title.addEventListener('click', function () {
                 DisplayTrainingCenterDetail(value.id);
                 map.setCenter(loc);
                 map.setZoom(14);
@@ -270,7 +271,7 @@ function SetMap() {
         minimumClusterSize: 3
     };
     var markerCluster = new MarkerClusterer(map, markers, options);
-    
+
     //custom marker style
     // ClusterIcon.prototype.createCss = function (pos) {
     //     var size = 15;
@@ -331,45 +332,53 @@ function SetMap() {
 function DisplayTrainingCenterDetail(id) {
 
     var $dialog = $('#dialog_training_center_detail');
-    console.log(trainingcenters);
+
     if (id) {
-        
+
         var trainingcenter = "";
-        $.each(trainingcenters, function (index, value) {  
-            if(typeof value.spot_json[id] !== "undefined"){
-                trainingcenter = value.spot_json[id];  
+        $.each(trainingcenters, function (index, value) {
+            if (typeof value.spot_json[id] !== "undefined") {
+                trainingcenter = value.spot_json[id];
             }
         });
- 
 
-        if(trainingcenter){
-            $dialog.parent().find('.ui-dialog-title').html("<p class='tra_cen_tit'>" + trainingcenter.name + "</p>" );
-            $dialog.find('.id_center').text(id); 
+        if (trainingcenter) {
+            $dialog.parent().find('.ui-dialog-title').html("<span class='center_title'>" + trainingcenter.name + "</span>");
+            $dialog.find('.id_center').text(id);
             $dialog.find('.logo').attr('src', trainingcenter.logo);
-            
+
             $dialog.find('.nom_ref').text(trainingcenter.ref.nom_ref);
             $dialog.find('.email_ref').text(trainingcenter.ref.email_ref);
             $dialog.find('.tel_ref').text(trainingcenter.ref.tel_ref);
-            
+
             $dialog.find('.street').text(trainingcenter.address.adr);
             $dialog.find('.zip').text(trainingcenter.address.zip);
             $dialog.find('.cit').text(trainingcenter.address.cit);
 
             $dialog.find('.nom_center').text(trainingcenter.center.nom_center);
-            $dialog.find('.tel_center').text(trainingcenter.center.tel_center);  
-            $dialog.find('.website_center a').attr('href', trainingcenter.center.website_center);
-            
-            $dialog.find('.text').text(trainingcenter.text);  
-             
+            $dialog.find('.tel_center').text(trainingcenter.center.tel_center);
+            $dialog.find('.email_center').text(trainingcenter.center.email_center);
+            $dialog.find('.website_center a').attr('href', trainingcenter.center.website_center).text(trainingcenter.center.website_center);
+            $dialog.find('.contact_center a').attr('href', 'mailto:' + trainingcenter.center.email_center);
+
+            $dialog.find('.text').html(trainingcenter.text); 
+ 
+            $.each(trainingcenter.gallery_data[0].image_url, function (index, value) { 
+                $('.info-slider').slick('slickAdd', '<div style="height: 200px; width: 200px;"><img src="' + value + '"></div>');
+            });
+
+
             $('.btn_map_g, .see_map_g').click(function () {
                 var zoom_pos = new google.maps.LatLng(trainingcenter.position.lat, trainingcenter.position.lon);
                 map.setCenter(zoom_pos);
                 map.setZoom(17);
                 $('#dialog_training_center_detail').dialog('close');
+                $('.ui-widget-overlay').hide();
             })
         }
 
-        OpenDialog('dialog_training_center_detail', { width: 650 });
+        OpenDialog('dialog_training_center_detail', { width: 750 });
+        $('.ui-widget-overlay').show();
     }
 
 }
@@ -397,10 +406,10 @@ function CreateMultiSelect() {
     });
 }
 
-function json2array(json){
+function json2array(json) {
     var result = [];
     var keys = Object.keys(json);
-    keys.forEach(function(key){
+    keys.forEach(function (key) {
         result.push(json[key]);
     });
     return result;

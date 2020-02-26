@@ -15,10 +15,11 @@ function post_add_rest_field( $data, $post, $context ) {
                     'nom_ref' => $title_alias,
                     'email_ref' => get_post_meta(get_the_ID(),'spot_field__email_ref',true),
                     'tel_ref' => get_post_meta(get_the_ID(),'spot_field__tel_ref',true)
-                ),
+                ), 
                 'center' =>  array(
                     'nom_center' => get_post_meta(get_the_ID(),'spot_field__nom_center',true), 
                     'tel_center' => get_post_meta(get_the_ID(),'spot_field__tel_center',true), 
+                    'email_center' => get_post_meta(get_the_ID(),'spot_field__email_center',true), 
                     'website_center' => get_post_meta(get_the_ID(),'spot_field__website_center',true),  
                 ),
                 'address' =>  array(
@@ -30,7 +31,8 @@ function post_add_rest_field( $data, $post, $context ) {
                     'lat' => get_post_meta(get_the_ID(),'spot_field__lat',true),
                     'lon' => get_post_meta(get_the_ID(),'spot_field__lon',true),
                 ),
-                'text' => get_post_meta(get_the_ID(),'spot_field__text',true),
+                'text' => get_the_content(),
+                'gallery_data' =>  get_post_meta(get_the_ID(), 'spot_gallery_data', $gallery_data)
             )
 		);
 	}

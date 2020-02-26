@@ -53,14 +53,16 @@ function custom_post_type() {
         'exclude_from_search' => false,
         'publicly_queryable' => true,
         'capability_type' => 'page',
-        'register_meta_box_cb' => 'register_spot_metabox',
+        'register_meta_box_cb' => 'spotslocatore_register_spot_metabox',
     );
 
     register_post_type('spot', $args);
 
 }
 
+
 function custom_theme_setup(){
     add_theme_support('post-thumbnails');
 }
 add_action('after_setup_theme', 'custom_theme_setup');
+

@@ -2,27 +2,32 @@
   "name": "spotslocator",
   "version": "1.0.0",
   "description": "Wordpress plugin allow to search/find locations in the map",
-  "main": "postcss.config.js",
+  "main": "webpack.config.js",
   "dependencies": {
-    "cross-env": "^6.0.3",
-    "laravel-mix": "^5.0.0",
-    "postcss-import": "^12.0.1",
-    "tailwindcss": "^1.1.2"
+    "bootstrap": "^4.4.1"
+  },
+  "devDependencies": {
+    "css-loader": "^2.1.0",
+    "file-loader": "1.1.6",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-fix-style-only-entries": "^0.4.0"
   },
   "scripts": {
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "watch": "webpack --watch --mode development",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oussamaProjects/Spotslocator.git"
   },
-  "author": "",
+  "author": "Oussama Elmaaroufy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/oussamaProjects/Spotslocator/issues"

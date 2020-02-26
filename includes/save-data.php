@@ -53,7 +53,6 @@ function spotslocatore_update_title( $post_id ){
     }
 }
 
-
 // function spot_endpoint() {
  
 //     add_rewrite_tag( '%spot%', '([^&]+)' );
@@ -106,8 +105,7 @@ function spotslocatore_update_title( $post_id ){
 //                 'position' =>  array(
 //                     'lat' => get_post_meta(get_the_ID(),'spot_field__lat',true),
 //                     'lon' => get_post_meta(get_the_ID(),'spot_field__lon',true),
-//                 ),
-//                 'text' => get_post_meta(get_the_ID(),'spot_field__text',true),
+//                 ), 
 //             );
  
 //         endwhile; 
