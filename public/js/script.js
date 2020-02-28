@@ -15,20 +15,24 @@ function OpenDialog(id, parameters) {
             $("#" + id + " a.button").focus();
         }
     }
+    $('.ui-widget-overlay').show();
+    $('body').addClass('no-scroll');
 }
 
 $('.dialog_training_close').click(function (e) {
     e.preventDefault();
     $('#dialog_training_center_detail').dialog('close');
     $('.ui-widget-overlay').hide();
+    $('body').removeClass('no-scroll');
 });
 
 $('.info-slider').slick({
+    dots: true,
     arrows: false,
     infinite: true,
     speed: 300,
     slidesToShow: 1,
     centerMode: true,
     variableWidth: true,
-    adaptiveHeight: true,
+    // adaptiveHeight: true,
 });

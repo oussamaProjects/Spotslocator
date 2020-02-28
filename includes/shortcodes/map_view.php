@@ -23,7 +23,7 @@ function map_view($atts)
         </div>
 
 
-        <div class="row no-gutters">
+        <div class="row no-gutters d-flex flex-column-reverse flex-md-row">
             <div class="col-md-3">
                 <div id="training_center_list">
                     <div class="center_number">centres trouvés.</div>
@@ -70,7 +70,7 @@ function map_view($atts)
                                             target="_blank">Website</a></div>
                                 </div>
 
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex">
                                     <div class="contact_center">
                                         <a href="#" class="btn btn-custom">Contacer le centre </a>
                                     </div>

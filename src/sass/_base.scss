@@ -1,9 +1,10 @@
 /* =WordPress Core
 -------------------------------------------------------------- */
 
-ul{
+ul {
 	text-align: initial;
 }
+
 .alignnone {
 	margin: 5px 20px 20px 0;
 }
@@ -15,7 +16,7 @@ div.aligncenter {
 }
 
 .alignright {
-	float:right;
+	float: right;
 	margin: 5px 0 20px 20px;
 }
 
@@ -47,7 +48,8 @@ a img.aligncenter {
 .wp-caption {
 	background: #fff;
 	border: 1px solid #f0f0f0;
-	max-width: 96%; /* Image does not overflow the content area */
+	max-width: 96%;
+	/* Image does not overflow the content area */
 	padding: 5px 3px 10px;
 	text-align: center;
 }
@@ -107,51 +109,59 @@ a img.aligncenter {
 	text-decoration: none;
 	top: 5px;
 	width: auto;
-	z-index: 100000; /* Above WP toolbar. */
-} 
+	z-index: 100000;
+	/* Above WP toolbar. */
+}
 
 // My style
 body {
 	font-family: $font-family-base;
 	font-size: $font-size-base;
 	font-weight: $font-weight-base;
-	line-height: $line-height-base; 
-	color: $body-color; 
+	line-height: $line-height-base;
+	color: $body-color;
 	background-color: $body-bg;
 
-	@include media-breakpoint-up("<md"){
-		font-size: $font-size-lg; 
+	&.no-scroll {
+		overflow: hidden;
+	}
+
+	@include media-breakpoint-up("<md") {
+		font-size: $font-size-lg;
 		line-height: $line-height-lg;
 	}
-	@include media-breakpoint-up("<sm"){
-		font-size: $font-size-sm;  
+
+	@include media-breakpoint-up("<sm") {
+		font-size: $font-size-sm;
 		line-height: $line-height-sm;
 	}
-	
+
 
 	p {
 		margin-top: 0;
 		margin-bottom: 1rem;
 	}
 
-	img{
+	img {
 		max-width: 100%;
 		height: initial;
 	}
 
-	&.single-events .menu-item-103 > a{
+	&.single-events .menu-item-103>a {
 		color: $second_main_color;
 	}
 
 }
 
 :focus {
-    outline: none;
+	outline: none;
 }
-a{
+
+a {
+
 	&:hover,
 	&:focus,
-	&:active{
+	&:active {
 		text-decoration: none;
 	}
 }
@@ -172,7 +182,8 @@ blockquote {
 	min-height: rem(140px);
 	display: flex;
 	align-items: center;
-	p{
+
+	p {
 		color: $main_color;
 		position: absolute;
 		margin: 0;
@@ -181,39 +192,36 @@ blockquote {
 		@include transition();
 	}
 
-	&.show p{
+	&.show p {
 		left: 2%;
 	}
-	&.hide p{
+
+	&.hide p {
 		left: -100%;
 	}
 
-	@include media-breakpoint-up("<md"){
+	@include media-breakpoint-up("<md") {
 		margin: rem(30px) auto;
 		padding: rem(0px) rem(15px);
 		margin-left: 0px;
 		border-left: rem(3px) solid $main_color;
-		font-size: rem(20px); 
-		line-height: rem(32px); 
+		font-size: rem(20px);
+		line-height: rem(32px);
 		min-height: auto;
 		height: auto;
 
-		p{ 
+		p {
 			position: relative;
 			margin: 0;
-			left: 0; 
-		}
-
-		&.show p{
 			left: 0;
 		}
-		&.hide p{
+
+		&.show p {
+			left: 0;
+		}
+
+		&.hide p {
 			left: 0;
 		}
 	}
 }
-
-
- 
- 
- 

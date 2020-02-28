@@ -76,6 +76,7 @@
     img {
         display: block;
         max-height: 100%;
+        max-height: 100px;
     }
 
     &.slick-loading img {
@@ -92,6 +93,7 @@
         max-height: 100%;
         display: flex;
         align-items: center;
+        padding: 0 20px;
     }
  
     .slick-loading & {

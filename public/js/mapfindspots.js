@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     }
     // we need to open and close the dialog in ready because we have dynamic ui-title for each training center
-    OpenDialog('dialog_training_center_detail', { width: 750 });
+    OpenDialog('dialog_training_center_detail', { width: 800 });
     $('#dialog_training_center_detail').dialog('close');
     $('.ui-widget-overlay').hide();
 });
@@ -54,6 +54,7 @@ function SetCityAutocompletion() {
         map.addListener('bounds_changed', function () {
             searchBox.setBounds(map.getBounds());
         });
+
     searchBox.addListener('places_changed', function () {
         var places = searchBox.getPlaces();
         if (places.length == 0) {
@@ -98,6 +99,7 @@ function SetCityAutocompletion() {
             }
         });
         map.fitBounds(bounds);
+
         if (map.getZoom() == 12) {
             map.setZoom(map.getZoom() - 1);
         }
@@ -160,6 +162,7 @@ function SetMap() {
         }
         spot_json = value.spot_json[mykey];
         if (spot_json.position.lat != 0 && spot_json.position.lon != 0) {
+
             var loc = new google.maps.LatLng(spot_json.position.lat, spot_json.position.lon);
 
             var marker = new google.maps.Marker({
@@ -210,6 +213,8 @@ function SetMap() {
             marker.addListener('mouseout', function () {
                 infowindow.close(map, marker);
             });
+
+
         } else {
             console.log('No position: ' + value.id);
         }
@@ -250,12 +255,15 @@ function SetMap() {
                     nbMarkerInView++;
                     $('#trainingcenter-' + markers[i].id).show();
                 }
-
-
             }
 
             $('#training_center_list .center_number').html(nbMarkerInView + " " + centerNumber);
         }
+
+        if (map.getZoom() <= 3) {
+            map.setZoom(3);
+        }
+
         $('#training_center_list .center_number').show();
         if (nbMarkerInView > 20) {
             $('#training_center_list').children().hide();
@@ -361,12 +369,15 @@ function DisplayTrainingCenterDetail(id) {
             $dialog.find('.website_center a').attr('href', trainingcenter.center.website_center).text(trainingcenter.center.website_center);
             $dialog.find('.contact_center a').attr('href', 'mailto:' + trainingcenter.center.email_center);
 
-            $dialog.find('.text').html(trainingcenter.text); 
- 
-            $.each(trainingcenter.gallery_data[0].image_url, function (index, value) { 
-                $('.info-slider').slick('slickAdd', '<div style="height: 200px; width: 200px;"><img src="' + value + '"></div>');
-            });
+            $dialog.find('.text').html(trainingcenter.text);
 
+            // $('.info-slider').slick('destroy');
+            $dialog.find('.info-slider').slick('slickRemove', null, null, true);
+            if (trainingcenter.gallery_data.length) {
+                $.each(trainingcenter.gallery_data[0].image_url, function (index, value) {
+                    $dialog.find('.info-slider').slick('slickAdd', '<div style="height: 120px; width: 200px;"><img src="' + value + '"></div>');
+                });
+            }
 
             $('.btn_map_g, .see_map_g').click(function () {
                 var zoom_pos = new google.maps.LatLng(trainingcenter.position.lat, trainingcenter.position.lon);
@@ -377,8 +388,8 @@ function DisplayTrainingCenterDetail(id) {
             })
         }
 
-        OpenDialog('dialog_training_center_detail', { width: 750 });
-        $('.ui-widget-overlay').show();
+        OpenDialog('dialog_training_center_detail', { width: 800 });
+
     }
 
 }
