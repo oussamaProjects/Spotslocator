@@ -99,36 +99,36 @@ function build_spot_mb($post)
 
         <?php
 
-        if (isset($spot_data['spot_field__lat'][0]) && isset($spot_data['spot_field__lon'][0])) {
-            
+    if (isset($spot_data['spot_field__lat'][0]) && isset($spot_data['spot_field__lon'][0])) {
+
         $fromat_address = trim($spot_data['spot_field__lat'][0]) . '+' . trim($spot_data['spot_field__lon'][0]);
         // $fromat_address = str_replace(",","+",$fromat_address);
         $address_obj = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDcnLKAxbtX2f_bAGN-e8x3eI_UktTiMbs&address=" . $fromat_address . "&sensor=false");
         $address_obj = json_decode($address_obj);
-        $latitude    = $address_obj->results[0]->geometry->location->lat;
-        $longitude   = $address_obj->results[0]->geometry->location->lng;
+        $latitude = $address_obj->results[0]->geometry->location->lat;
+        $longitude = $address_obj->results[0]->geometry->location->lng;
         ?>
 
         <script>
         var map;
         var lat = "<?php echo $latitude ?>";
         var lng = "<?php echo $longitude; ?>";
-        
+
         function initialize() {
 
             var latlng = new google.maps.LatLng(lat, lng);
-            
+
             var mapOptions = {
                 zoom: 15,
                 center: latlng,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
-            
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
-            
+
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
             var marker = new google.maps.Marker({
                 position: latlng,
-                map: map, 
+                map: map,
             });
 
             marker.setMap(map);
@@ -136,7 +136,6 @@ function build_spot_mb($post)
         }
         // map-convas would be id of div you want to show your map in
         google.maps.event.addDomListener(window, 'load', initialize);
-        
         </script>
 
         <?php
